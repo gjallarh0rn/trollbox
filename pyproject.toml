@@ -1,0 +1,54 @@
+[tool.briefcase]
+project_name = "TrollBox"
+bundle = "com.example.trollbox"
+version = "1.0.1"
+url = "https://github.com/gjallarh0rn/trollbox"
+license = "GNU General Public License v3 (GPLv3)"
+author = 'gjallarh0rn'
+author_email = "awy44wyihjgawzeohn@mail.com"
+
+[tool.briefcase.app.trollbox]
+formal_name = "TrollBox"
+description = "The TrollBox Soundboard"
+icon = "src/trollbox/resources/trollbox"
+sources = ['src/trollbox']
+requires = [
+    "keyboard==0.13.5",
+    "mouse==0.7.1",
+    "PySDL2==0.9.7",
+    "pysdl2-dll==2.0.14.post1",
+]
+
+
+[tool.briefcase.app.trollbox.macOS]
+requires = [
+    'toga-cocoa>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.trollbox.linux]
+requires = [
+    'toga-gtk>=0.3.0.dev20',
+]
+system_requires = [
+    'libgirepository1.0-dev',
+    'libcairo2-dev',
+    'libpango1.0-dev',
+    'libwebkitgtk-3.0-0',
+    'gir1.2-webkit-3.0',
+]
+
+[tool.briefcase.app.trollbox.windows]
+requires = [
+    'toga-winforms>=0.3.0.dev20',
+]
+
+# Mobile deployments
+[tool.briefcase.app.trollbox.iOS]
+requires = [
+    'toga-iOS>=0.3.0.dev20',
+]
+
+[tool.briefcase.app.trollbox.android]
+requires = [
+    'toga-android>=0.3.0.dev20',
+]
