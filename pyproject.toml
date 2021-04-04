@@ -1,7 +1,7 @@
 [tool.briefcase]
 project_name = "TrollBox"
 bundle = "com.example.trollbox"
-version = "1.0.1"
+version = "1.0.2"
 url = "https://github.com/gjallarh0rn/trollbox"
 license = "GNU General Public License v3 (GPLv3)"
 author = 'gjallarh0rn'

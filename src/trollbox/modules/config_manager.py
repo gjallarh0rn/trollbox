@@ -54,9 +54,12 @@ class ConfigManager:
                 if filename.endswith(".mp3"):
                     self.__sounds.add(filename)
 
+    def is_hotkey_used(self, hotkey):
+        return hotkey in self.__hotkeys.values()
+
     def set_hotkey(self, filename, hotkey):
         if hotkey is None:
-            self.__hotkeys.pop(hotkey, None)
+            self.__hotkeys.pop(filename, None)
         else:
             self.__hotkeys[filename] = hotkey
 

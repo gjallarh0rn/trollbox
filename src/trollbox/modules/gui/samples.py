@@ -1,3 +1,4 @@
+import os
 import toga
 import keyboard
 
@@ -17,6 +18,7 @@ class SampleBox(toga.Box):
 
         self.__controlbox = toga.Box(style=Pack(direction=COLUMN, width=150))
         # self.__controlbox.add(toga.Button("Load files", on_press=self.load_files))
+        self.__controlbox.add(toga.Button("Open trollbox sound folder", on_press=self.open_sound_folder))
         self.__controlbox.add(toga.Button("Load files from trollbox", on_press=self.load_files_trollbox))
         # self.__controlbox.add(toga.Button("DBG: Refresh", on_press=self.reload))
         # self.__controlbox.add(toga.Button("DBG: Save config", on_press=self.__config.save_config))
@@ -30,6 +32,9 @@ class SampleBox(toga.Box):
 
         self.__contentbox = toga.Box(style=Pack(direction=ROW))
         self.add(self.__contentbox)
+
+    def open_sound_folder(self, *args):
+        os.startfile(self.window.app.sound_dir)
 
     def load_files_trollbox(self, *args):
         self.__config.load_from_directory(self.window.app.sound_dir)

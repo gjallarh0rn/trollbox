@@ -32,19 +32,29 @@ class HotkeyBox(toga.Box):
             self.__hotkey_button.label = self.__hotkey
             keyboard.on_press_key(self.__hotkey, self.__button.on_press, suppress=True)
 
+    def __unset_hotkey(self, btn):
+        btn.label = "..."
+        keyboard.unhook(self.__hotkey)
+        self.__hotkey = None
+        self.__config.set_hotkey(self.__full_name, None)
+
     def add_hotkey(self, btn):
+        self.window.enabled = False
         k = keyboard.read_key()
+        self.window.enabled = True
+
         if k == "esc":
-            btn.label = "..."
-            keyboard.unhook(self.__hotkey)
-            self.__hotkey = None
-            self.__config.set_hotkey(self.__full_name, None)
+            if self.__hotkey is not None:
+                self.__unset_hotkey(btn)
         elif k.lower() == "f12":
             self.window.info_dialog("Error", "Not allowed to set F12 as hotkey")
-            btn.label = "..."
-            self.__hotkey = None
-            self.__config.set_hotkey(self.__full_name, None)
+        elif self.__config.is_hotkey_used(k):
+            self.window.info_dialog("Error", "Hotkey already used")
         else:
+            # if we're replacing a hotkey, unregister it first
+            if self.__hotkey is not None:
+                self.__unset_hotkey(btn)
+
             btn.label = k
             self.__hotkey = k
             keyboard.on_press_key(self.__hotkey, self.__button.on_press, suppress=True)
